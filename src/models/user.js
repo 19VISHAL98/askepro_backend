@@ -1,4 +1,5 @@
 
+const { number } = require('joi');
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User', new mongoose.Schema({
@@ -14,6 +15,12 @@ const User = mongoose.model('User', new mongoose.Schema({
         minlength: 5,
         maxlength: 255,
         unique: true
+    },
+    mobile_no:{
+        type: Number,
+        required: true,
+        minlength: 10,
+        maxlength: 10
     },
     password: {
         type: String,

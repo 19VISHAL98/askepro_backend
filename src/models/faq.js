@@ -1,6 +1,6 @@
 
-const mongoose = require('[mongoose')
-const Faq = mongoose.model('Faq',new mongoose.schema({
+const mongoose = require('mongoose');
+const Faq = mongoose.model('Faq', new mongoose.Schema({
     question:{
         type: String,
         required : true
@@ -9,5 +9,5 @@ const Faq = mongoose.model('Faq',new mongoose.schema({
         type:String,
         required: true
     }
-}));
-exports.Faq=  Faq;
+},{timestamp: true}));
+exports.Faq =  Faq;

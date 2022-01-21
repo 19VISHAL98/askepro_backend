@@ -13,5 +13,5 @@ const Query = mongoose.model('Query', new mongoose.Schema({
         type:String,
         required : true
     }
-}));
+},{timestamps: true}));
 exports.Query = Query;

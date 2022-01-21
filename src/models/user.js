@@ -1,5 +1,4 @@
 
-const { number } = require('joi');
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User', new mongoose.Schema({
@@ -27,6 +26,11 @@ const User = mongoose.model('User', new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 1024
-    }
-}));
+    },
+    user_type:{
+        type:String,
+        enum: ['user','admin'],
+        default : 'user'
+    },
+},{timestamps: true}));
 exports.User = User;

@@ -1,37 +1,34 @@
 const path = require('path')
 const multer = require("multer")
-var uuid = require('uuid-random');
+const { callbackify } = require('util')
 var storage = multer.diskStorage({
 	destination: (req, file, cb)=> {
 		cb(null, "src/uploads")
 	},
 	filename: (req, file, cb) =>{
-		
-	cb(null, file.fieldname + "-" +uuid()+ path.extname(file.originalname))
+		let ext = path.extname(file.originalname)
+		cb(null, Date.now() + ext)
+	 
 	}
+
 })
-const maxSize = 1 * 1000 * 1000;
 	
 var upload = multer({
-	storage: storage,
-	limits: { fileSize: maxSize },
+	storage: storage, 
 	fileFilter: function (req, file, cb){
-		var filetypes = /jpeg|jpg|png|pdf/;
-        
-		var mimetype = filetypes.test(file.mimetype);
-
-		var extname = filetypes.test(path.extname(
-					file.originalname).toLowerCase());
-                    
-		
-		if (mimetype && extname) {
-			return cb(null, true);
+		if(file.mimetype == "image/png" ||
+		file.mimetype == "image/jpg"){
+			cb(null, true)
+		}else{
+			console.log("only pnj & jpg file supported")
+			cb(null, false)
 		}
-	
-		cb("Error: File upload only supports the "
-				+ "following filetypes - " + filetypes);
-	}
-}).single("mypic");	
+	},
+	limits:{
+             fileSize : 1024 * 1024 * 2
+	}	
+		
+})
  module.exports = {
-     upload
+     upload,
  }

@@ -5,8 +5,9 @@ const { User } = require('../models/user');
     // Check if this user already exisits
     let user = await User.findOne({ email: req.body.email });
     if (user) {
-        return res.status(400).send('That user already exisits!');
-    } else {
+        return res.status(400).send('User already exists!');
+    } 
+    else {
         // Insert the new user if they do not exist yet
         user = new User({
             name: req.body.name,
@@ -17,7 +18,9 @@ const { User } = require('../models/user');
         await user.save();
         res.send(user);
     }
-}catch (e){
+}
+catch (e)
+{
     res.json("error", e)
 }
 };

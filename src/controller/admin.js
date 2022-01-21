@@ -19,4 +19,3 @@ const services=(req, res)=>{
     res.sendFile(fileName, options);
 }
 module.exports = {offer , services}
-	

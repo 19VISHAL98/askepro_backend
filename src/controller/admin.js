@@ -42,7 +42,7 @@ const showFaq = async(req,res)=>{
         res.send("ERROR:",e)
     }
 }
-<<<<<<< HEAD
+
 //------------------------------EDIT FAQ---------------------------------------------
 
 module.exports = {
@@ -52,6 +52,3 @@ module.exports = {
     showFaq
        }
 	
-=======
-module.exports = {offer , services}
->>>>>>> ab9e0430eb4cde284d524c58099e9e238a939b5e

@@ -9,11 +9,12 @@ const { User } = require('../models/user');
     } 
     else {
         // Insert the new user if they do not exist yet
+        const Hash = bcrypt.hash(req.body.password);
         user = new User({
             name: req.body.name,
             email: req.body.email,
             mobile_no: req.body.mobile_no,
-            password: req.body.password
+            password: Hash
         });
         await user.save();
         res.send(user);

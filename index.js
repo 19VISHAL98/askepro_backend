@@ -17,7 +17,7 @@ const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
  
  
-//-----------------------------------------prectic-----------
+//----------------------------------------- prashant bro -----------
 
 let arrA = [{boy:"ram", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];
 let arrB = [{boy:"vinsy", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];

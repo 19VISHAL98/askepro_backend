@@ -24,7 +24,7 @@ catch (e)
     res.json("error", e)
 }
 };
-
+//---------------------------------------SHOW USER -------------------------------------
 const show = async (req,res)=>{
     const all = await User.find();
     res.send(all)

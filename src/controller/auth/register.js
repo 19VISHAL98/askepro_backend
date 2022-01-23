@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
    } 
    else {
        // Insert the new user if they do not exist yet
-       const Hash = bcrypt.hash(req.body.password);
+       const Hash = await bcrypt.hash(req.body.password , 12);
        user = new User({
            name: req.body.name,
            email: req.body.email,
@@ -23,9 +23,9 @@ const bcrypt = require('bcrypt');
        res.send(user);
    }
 }
-catch (e)
+catch (err)
 {
-   res.json("error", e)
+   res.json(err)
 }
 };
 

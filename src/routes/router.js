@@ -1,19 +1,25 @@
 
 const express = require('express');
-const { offer, showOffer, faq, showFaq, service, showServices, } = require('../controller/admin');
+const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, } = require('../controller/admin');
+const {login} = require('../controller/auth/login');
 const { user, show } = require('../controller/users');
 const{upload } = require('../middleware/multer')
 
 const router = express.Router();
 
 router.post('/api/user', user)
-router.post('/api/offer', upload.single('image'), offer)
 router.get('/api/show',show)
-router.get('/api/showOffer',showOffer)
+router.post('/offer', upload.single('image'), offer)
+router.get('/offer',showOffer)
+router.post('/view/(:id)',  viewOffer)
+router.delete('/offer/(:id)', deleteOffer)
 router.post('/faq',faq)
 router.get('/faq',showFaq)
+router.delete('/faq/(:id)',deleteFaq)
+router.post('/faq/(:id)',updateFaq)
 router.post('/services', upload.single('image'), service)
 router.get('/showServices',showServices)
+router.post('/login',login)
 
 
 module.exports = router;

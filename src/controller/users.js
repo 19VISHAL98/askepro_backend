@@ -1,5 +1,6 @@
 const { User } = require('../models/user');
 
+const bcrypt = require("bcrypt")
  const user = async (req, res) => {
      try{
     // Check if this user already exisits
@@ -9,21 +10,23 @@ const { User } = require('../models/user');
     } 
     else {
         // Insert the new user if they do not exist yet
-        const Hash = bcrypt.hash(req.body.password);
+        const password = req.body.password;
+        const hash = await bcrypt.hash(password , 12);
+       
         user = new User({
             name: req.body.name,
             email: req.body.email,
             mobile_no: req.body.mobile_no,
-            password: Hash
+            password: hash
         });
         await user.save();
         res.send(user);
     }
 }
-catch (e)
-{
-    res.json("error", e)
+catch (e){
+    console.log(e)
 }
+
 };
 //---------------------------------------SHOW USER -------------------------------------
 const show = async (req,res)=>{

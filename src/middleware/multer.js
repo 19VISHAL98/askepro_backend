@@ -1,6 +1,5 @@
 const path = require('path')
 const multer = require("multer")
-const { callbackify } = require('util')
 var storage = multer.diskStorage({
 	destination: (req, file, cb)=> {
 		cb(null, "src/uploads")

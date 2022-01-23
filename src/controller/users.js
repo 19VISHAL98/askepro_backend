@@ -1,6 +1,12 @@
 const { User } = require('../models/user');
 
+<<<<<<< HEAD
 const bcrypt = require("bcrypt")
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> a52864008b5528b2ec5f4728cb49e7b281117c15
  const user = async (req, res) => {
      try{
     // Check if this user already exisits
@@ -29,10 +35,9 @@ catch (e){
 
 };
 //---------------------------------------SHOW USER -------------------------------------
+>>>>>>> 9e94cd9bc9c3ec8eef8ddd49b35f104eaffdeced
 const show = async (req,res)=>{
     const all = await User.find();
     res.send(all)
 }
-module.exports= {
-    user, show
-}
+module.exports= {user, show};

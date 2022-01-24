@@ -2,7 +2,7 @@ const express = require('express');
 const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, insertQuery, showQuery, updateQuery, showClients, viewDetails, } = require('../controller/admin');
 const {login} = require('../controller/auth/login');
 const{ register} = require('../controller/auth/register');
-const { client, show } = require('../controller/users');
+const { client, show, client1 } = require('../controller/users');
 const{upload } = require('../middleware/multer')
 
 const router = express.Router();
@@ -28,6 +28,7 @@ router.get('/showQuery', showQuery)
 router.put('/updateQuery/(:id)', updateQuery)
 router.get('/showClients', showClients)
 router.get('/viewDetails', viewDetails)
+router.put('/client/(:id)', client1)
 
 module.exports = router;
  

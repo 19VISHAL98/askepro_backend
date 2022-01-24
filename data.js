@@ -10,7 +10,7 @@
 // console.log(d)
 
 let n =[1, 2, 3,];
-let m = [["a"],["e"],["f"]]
+let m = ["a","b","c"]
 
 m.forEach(k => {
     n.forEach(i => {

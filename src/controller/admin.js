@@ -216,16 +216,18 @@ const updateQuery = async(req ,res) => {
 
 const showClients = async (req, res) => {
     try {
-        const auth = verifyToken(req ,res);
-        if(auth.user_type === admin) {
-            const clients = await Client.find();
-            return res.send(clients._id, clients.name, clients.email, clients.mobile_no, clients.createdAt);
-        }
-        else
-        {
-            return res.send("You don't have enough permissions");
-        }
-    }
+        // const auth = verifyToken(req ,res);
+        // if(auth.user_type === admin) {
+            clients = await Client.find();
+            res.send(clients._id)
+           ///return res.send(clients._id, clients.name, clients.email, clients.mobile_no, clients.createdAt);
+      //  }
+    //     else
+    //     {
+    //         return res.send("You don't have enough permissions");
+    //     }
+    //
+ }
     catch(e){
         return res.send(e);
     }

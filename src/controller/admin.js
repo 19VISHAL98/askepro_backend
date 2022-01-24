@@ -9,6 +9,8 @@ const {Faq} = require('../models/faq')
 const {Services} = require('../models/services')
 const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
+const { Query } = require('../models/query')
+const { Client } = require('../models/client')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -101,7 +103,7 @@ const showFaq = async(req,res)=>{
 const deleteFaq = async(req,res)=>{
     try{
         const auth = verifyToken(req, res);
-    if(auth.user_type === admin){
+    if(auth.user_type === "admin"){
       const remove= await Faq.findByIdAndRemove(req.params.id)
       return res.send(remove)
         }else{
@@ -115,7 +117,7 @@ const deleteFaq = async(req,res)=>{
 const updateFaq = async(req, res)=>{
     try{
         const auth = verifyToken(req, res);
-        if(auth.user_type === admin){
+        if(auth.user_type === "admin"){
         const update = await Faq.findByIdAndUpdate(req.params.id , {question:req.body.question,answer:req.body.answer})
         return res.send(update)
         }else{
@@ -159,6 +161,95 @@ const updateFaq = async(req, res)=>{
        return  res.send(e)
      }
  }
+
+//-------------------------------Query-----------------------------------------------------------------------
+
+const insertQuery = async(req, res) => {
+    try {
+        const query = new Query({name: req.body.name, email: req.body.email, query: req.body.query})
+        await query.save();
+        return res.send(query);
+    }
+    catch(e){
+        return res.send(e);
+    }
+}
+
+
+const showQuery = async(req ,res) => {
+    try {
+        // const auth = verifyToken(req ,res);
+        if(auth.user_type === admin)
+        {
+            const query = await Query.find();
+            return res.send(query);
+        }
+        else{
+            return res.send("You don't have enough permissions")
+        }
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
+
+
+const updateQuery = async(req ,res) => {
+    try{
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin)
+         {
+            const query = await Query.findByIdAndUpdate(req.params.id, {status: "resolved"})
+            return res.send(query)
+            
+        }
+        else{
+            return res.send("You don't have enough permissions")
+        }
+    }
+    catch(error){
+        return res.send(error);
+    }
+};
+
+// --------------------------------------------Clients ------------------------------------------------------
+
+const showClients = async (req, res) => {
+    try {
+        // const auth = verifyToken(req ,res);
+        // if(auth.user_type === admin) {
+            clients = await Client.find();
+            res.send(clients._id)
+           ///return res.send(clients._id, clients.name, clients.email, clients.mobile_no, clients.createdAt);
+      //  }
+    //     else
+    //     {
+    //         return res.send("You don't have enough permissions");
+    //     }
+    //
+ }
+    catch(e){
+        return res.send(e);
+    }
+};
+
+const viewDetails = async(req, res) => {
+    try {
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin) {
+            const client = await Client.find();
+            return res.send(client.name, client.mobile_no, client.email);
+        }
+        else{
+            return res.send("You don't have enough permissions");
+        }
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
+
+
 module.exports = {
     offer ,
     showOffer,
@@ -169,7 +260,12 @@ module.exports = {
     deleteFaq,
     updateFaq,
     service,
-    showServices
+    showServices, 
+    insertQuery,
+    showQuery,
+    updateQuery, 
+    showClients, 
+    viewDetails
 
        }
 	

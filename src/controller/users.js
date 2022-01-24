@@ -1,36 +1,46 @@
-const { User } = require('../models/user');
-const bcrypt = require("bcrypt")
- const user = async (req, res) => {
+const { Client } = require('../models/client');
+ const client = async (req, res) => {
      try{
-    // Check if this user already exisits
-    let user = await User.findOne({ email: req.body.email });
-    if (user) {
-        return res.status(400).send('User already exists!');
-    } 
-    else {
-        // Insert the new user if they do not exist yet
-        const password = req.body.password;
-        const hash = await bcrypt.hash(password , 12);
-       
-        user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            mobile_no: req.body.mobile_no,
-            password: hash
-        });
+     console.log(req.body)
+        user = new Client({
+            services_id:req.body.services_id,
+            category_id:req.body.category_id
+            // sub_category_id:556,
+            
+        });  
         await user.save();
         res.send(user);
-    }
-}
+     } 
 catch (e){
     console.log(e)
 }
-
 };
+//------------------------------------------- client update--------------------------------------------------
+const client1 = async(req , res)=>{
+    try{
+        client = await Client.findByIdAndUpdate(req.params.id, { 
+             name: req.body.name,
+            email: req.body.email,
+            mobile_no: req.body.mobile_no,
+            location:req.body.location,
+            address: req.body.address,
+            dob: req.body.dob, 
+        })
+            return res.send(client)
+
+    }catch(err){
+        return res.send(err)
+    }
+}
 //---------------------------------------SHOW USER -------------------------------------
 
 const show = async (req,res)=>{
-    const all = await User.find();
+    const all = await Client.find();
     res.send(all)
 }
-module.exports= {user, show};
+console.log(Client)
+module.exports= {
+    client,
+    client1,
+     show
+     };

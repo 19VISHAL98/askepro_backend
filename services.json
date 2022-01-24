@@ -1,0 +1,22 @@
+{
+    "data" : {
+        "service_name": "abc",
+        "Description" : "abc",
+        "category" : ["abc", "xyz", " xyax"],
+        "application" : [{
+            "application_type": "abc",
+            "total_fees" : 1020,
+            "discount"  : 500,
+            "type" : "abc",
+            "required" : "abc xyz"
+        }, 
+        { 
+            "application_type": "xyz",
+            "total_fees" : 1020,
+            "discount"  : 500,
+            "type" : "abc",
+            "required" : "abc xyz"
+
+        }]
+    } 
+}

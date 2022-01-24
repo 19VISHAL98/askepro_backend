@@ -19,20 +19,21 @@ app.listen(port, () => console.log(`Listening on port ${port}...`));
  
 //----------------------------------------- prashant bro -----------
 
-let arrA = [{boy:"ram", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];
-let arrB = [{boy:"vinsy", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];
-let n = [[{a:"a"},{b:"b"}],[{a:"sd"}]];
-let m = ["a","b","c"]
-//categ = category_name.forEach(category_name =>Category.insertMany({category_name:category_name}) )
-//console.log(categ)//
+// let arrA = [{boy:"ram", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];
+// let arrB = [{boy:"vinsy", girl:"sita",gay:"gay"},{boy:"shaym", girl:"mihaliph",gay:"gay"}];
+// let n = [[{a:"a"},{b:"b"}],[{a:"sd"}]];
+// let m = ["a","b","c"]
+// //categ = category_name.forEach(category_name =>Category.insertMany({category_name:category_name}) )
+// //console.log(categ)//
 
-//arr.forEach(arr=>console.log(arr))
-m.forEach(k => {
-    n.forEach(i => {
-        console.log(i,k)
-    });
-})
+// //arr.forEach(arr=>console.log(arr))
+// m.forEach(k => {
+//     n.forEach(i => {
+//         console.log(i,k)
+//     });
+// })
 
-console.log(n)
-console.log(m)
+// console.log(n)
+// console.log(m)
 
+console.log(options)

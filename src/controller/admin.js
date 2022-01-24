@@ -1,47 +1,128 @@
 const mongoose =require('mongoose')
 const path = require('path')
+const multer = require("multer")
+const fs = require('fs')
+const {upload} = require('../middleware/multer')
+const {options}= require('../uploads/path')
 const {Offers} = require('../models/offer')
 const {Faq} = require('../models/faq')
 const {Services} = require('../models/services')
 const {Category} = require('../models/category')
+const verifyToken = require('./auth/verify')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
+
      try{
-        offers = new Offers({name:req.body.name,image: req.file.path })
-        await offers.save();
-        res.send(offers)
-     }catch(e){
-         res.send("error" ,e)
+        const auth = verifyToken(req, res);       
+         console.log(req.file.path)
+         const offers = new Offers({name:req.body.name,image:req.file.path});
+         await offers.save();
+         return res.send(offers)
+         
+         
+     }catch(err){
+        return res.send(err)
      }   
  }
 //------------------------------------SHOW OFFER-----------------------------------------------------------
 const showOffer=async(req, res)=>{
     try{
+        const auth = verifyToken(req, res);
         const offer = await Offers.find()
-        res.send(offer)
-        offer.forEach(image => console.log(image.image.slice(12)))
-    }catch(e){
-        res.send("ERROR:" , e)
+         return res.send(offer)   
+    }catch(err){
+       return res.send(err)
     }  
+}
+//-----------------------------------VIEW OFFER--------------------------------------------------------
+const viewOffer = async(req , res)=>{
+    try{
+        const auth = verifyToken(req, res);
+        const offer = await Offers.findById(req.params.id)
+        let image = offer.image
+        var fileName = image.slice(12)
+        console.log(fileName)
+        res.sendFile(fileName, options, function (err) {
+            if (err) {
+             console.log(err)
+            } else {
+                console.log('Sent:', fileName);
+            }
+       });
+    }catch(err){
+        return res.send(err)
+    }
+}
+//-------------------------------------DELETE OFFER--------------------------
+const deleteOffer = async(req,res)=>{
+    try{
+        const remove= await Offers.findByIdAndRemove(req.params.id)
+       // return res.send(remove)
+        let image = remove.image;
+        fs.unlink(image, function (err) {
+            if (err) throw err;
+            console.log('File deleted!');
+        });
+    }catch(err){
+        return res.send(err)
+    }
 }
 //----------------------------------ADD FAQ ----------------------------------------------------
 const faq = async(req,res)=>{
     try{
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin){
         faqs = new Faq({question:req.body.question, answer: req.body.answer});
         await faqs.save()
-         res.send(faqs)
+        return res.send(faqs)
+        }else{
+            return res.send("you are not admin")
+        }
     }catch(e){
-        res.send("ERROR :", e)
+       return res.send("ERROR :", e)
     }
 }
 //-------------------------------SHOW FAQ -----------------------------------------------\
 const showFaq = async(req,res)=>{
     try{
-      faqs = await Faq.find();
-      res.send(faqs)
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin){
+        faqs = await Faq.find();
+       return res.send(faqs)
+        }else{
+            return res.send("you are not admin")
+        }
+    }catch(err){
+       return res.send(err)
+    }
+}
+//--------------------------------DELETE FAQ------------------------------------------
+const deleteFaq = async(req,res)=>{
+    try{
+        const auth = verifyToken(req, res);
+    if(auth.user_type === admin){
+      const remove= await Faq.findByIdAndRemove(req.params.id)
+      return res.send(remove)
+        }else{
+        return res.send("you are not admin")
+      }
     }catch(e){
-        res.send("ERROR:",e)
+       return res.send(e)
+    }
+}
+//-----------------------------UPDATE FAQ--------------------------------------------------
+const updateFaq = async(req, res)=>{
+    try{
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin){
+        const update = await Faq.findByIdAndUpdate(req.params.id , {question:req.body.question,answer:req.body.answer})
+        return res.send(update)
+        }else{
+            return res.send("you are not admin")
+        }
+    }catch(err){
+        return res.send(err)
     }
 }
 //------------------------------CREATE SERVICES---------------------------------------------
@@ -67,18 +148,28 @@ const showFaq = async(req,res)=>{
  //------------------------------SHOW SERVICES----------------------------------------------------------
  const showServices = async(req, res)=>{
      try{
-     const services = await Category.find().populate("services_id")
-     res.send(services)
+     const auth = verifyToken(req, res);
+     if(auth.user_type === admin){
+     const services = await Services.find();
+     return res.send(services);
+     }else{
+         return  res.send("you are not admin")
+     }
      }catch (e){
-         res.send(e)
+       return  res.send(e)
      }
  }
 module.exports = {
     offer ,
     showOffer,
+    viewOffer,
+    deleteOffer,
     faq,
     showFaq,
+    deleteFaq,
+    updateFaq,
     service,
     showServices
+
        }
 	

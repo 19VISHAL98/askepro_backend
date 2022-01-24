@@ -10,6 +10,7 @@ const {Services} = require('../models/services')
 const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
+const { Client } = require('../models/client')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -213,12 +214,38 @@ const updateQuery = async(req ,res) => {
 
 // --------------------------------------------Clients ------------------------------------------------------
 
-// const showClients = async (req, res) => {
-//     try {
-//         const clients = 
-//     }
-// }
+const showClients = async (req, res) => {
+    try {
+        const auth = verifyToken(req ,res);
+        if(auth.user_type === admin) {
+            const clients = await Client.find();
+            return res.send(clients._id, clients.name, clients.email, clients.mobile_no, clients.createdAt);
+        }
+        else
+        {
+            return res.send("You don't have enough permissions");
+        }
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
 
+const viewDetails = async(req, res) => {
+    try {
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin) {
+            const client = await Client.find();
+            return res.send(client.name, client.mobile_no, client.email);
+        }
+        else{
+            return res.send("You don't have enough permissions");
+        }
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
 
 
 module.exports = {
@@ -234,7 +261,9 @@ module.exports = {
     showServices, 
     insertQuery,
     showQuery,
-    updateQuery
+    updateQuery, 
+    showClients, 
+    viewDetails
 
        }
 	

@@ -9,6 +9,7 @@ const {Faq} = require('../models/faq')
 const {Services} = require('../models/services')
 const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
+const { Query } = require('../models/query')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -159,6 +160,67 @@ const updateFaq = async(req, res)=>{
        return  res.send(e)
      }
  }
+
+//-------------------------------Query-----------------------------------------------------------------------
+
+const insertQuery = async(req, res) => {
+    try {
+        const query = new Query({name: req.body.name, email: req.body.email, query: req.body.query})
+        await query.save();
+        return res.send(query);
+    }
+    catch(e){
+        return res.send(e);
+    }
+}
+
+
+const showQuery = async(req ,res) => {
+    try {
+        // const auth = verifyToken(req ,res);
+        if(auth.user_type === admin)
+        {
+            const query = await Query.find();
+            return res.send(query);
+        }
+        else{
+            return res.send("You don't have enough permissions")
+        }
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
+
+
+const updateQuery = async(req ,res) => {
+    try{
+        const auth = verifyToken(req, res);
+        if(auth.user_type === admin)
+         {
+            const query = await Query.findByIdAndUpdate(req.params.id, {status: "resolved"})
+            return res.send(query)
+            
+        }
+        else{
+            return res.send("You don't have enough permissions")
+        }
+    }
+    catch(error){
+        return res.send(error);
+    }
+};
+
+// --------------------------------------------Clients ------------------------------------------------------
+
+const showClients = async (req, res) => {
+    try {
+        const clients = 
+    }
+}
+
+
+
 module.exports = {
     offer ,
     showOffer,
@@ -169,7 +231,10 @@ module.exports = {
     deleteFaq,
     updateFaq,
     service,
-    showServices
+    showServices, 
+    insertQuery,
+    showQuery,
+    updateQuery
 
        }
 	

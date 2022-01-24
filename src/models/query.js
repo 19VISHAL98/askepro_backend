@@ -12,6 +12,12 @@ const Query = mongoose.model('Query', new mongoose.Schema({
     query:{
         type:String,
         required : true
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: ["open", "resolved"],
+        default: "open"
     }
 },{timestamps: true}));
 exports.Query = Query;

@@ -101,7 +101,7 @@ const showFaq = async(req,res)=>{
 const deleteFaq = async(req,res)=>{
     try{
         const auth = verifyToken(req, res);
-    if(auth.user_type === admin){
+    if(auth.user_type === "admin"){
       const remove= await Faq.findByIdAndRemove(req.params.id)
       return res.send(remove)
         }else{
@@ -115,7 +115,7 @@ const deleteFaq = async(req,res)=>{
 const updateFaq = async(req, res)=>{
     try{
         const auth = verifyToken(req, res);
-        if(auth.user_type === admin){
+        if(auth.user_type === "admin"){
         const update = await Faq.findByIdAndUpdate(req.params.id , {question:req.body.question,answer:req.body.answer})
         return res.send(update)
         }else{

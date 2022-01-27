@@ -11,6 +11,7 @@ const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
 const { Client } = require('../models/client')
+const { Sub_Category } = require('../models/sub_category')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -134,14 +135,31 @@ const updateFaq = async(req, res)=>{
          await servic.save();
          res.send(servic._id)
          let category_name = req.body.category_name;
-         let arr = [];
+         let m = [];
          category_name.forEach(myFunction);
          function myFunction(item) {
          sum = new Category({category_name:item, services_id:servic._id})
         sum.save() 
-         arr.push(sum);
+         m.push(sum);
          }
-         console.log(arr)
+         console.log(m)// category _id
+        //sub_category insert
+      let n = req.body.n;
+         m.forEach((k, index) => {
+                n.forEach((i, index2) => {
+                    if(index == index2){
+                        let arr = [];
+                        n[index2].forEach(myFunction);
+                        function myFunction(item) {
+                        sum = new Sub_Category({sub_category_name:item.sub_category_name, fess:item.fees, discount:item.discount, category_id:m[index]})
+                       sum.save() 
+                        arr.push(sum);
+                        }
+                        console.log(arr)
+                            
+                    }
+                });
+            });
         }catch(err){
           console.log(err)
      }

@@ -1,7 +1,8 @@
 const { Client } = require('../models/client');
 const {Document} = require('../models/Documents_Required');
 
-const uuid = require('uuid')
+const {v4 : uuidv4} = require('uuid')
+console.log(uuidv4())
  const client = async (req, res) => {
      try{
     // console.log(req.body)
@@ -9,6 +10,8 @@ const uuid = require('uuid')
             services_id:req.body.services_id,
             category_id:req.body.category_id,
             sub_category_id:req.body.sub_category_id,
+           status:"Details Pending"
+            
         });  
         await user.save();
         res.send(user);
@@ -27,6 +30,7 @@ const client1 = async(req , res)=>{
             location:req.body.location,
             address: req.body.address,
             dob: req.body.dob, 
+            status : "Document Pending"
         })
             return res.send(client)
 
@@ -37,7 +41,7 @@ const client1 = async(req , res)=>{
 //------------------------------------------Appintenent---------------------------------------
 const appintenents = async(req ,res)=>{
     try{
-    appintenent = await Client.findByIdAndUpdate(req.params.id, {appointments:req.body.appointments, status:"appointments peanding"})
+    appintenent = await Client.findByIdAndUpdate(req.params.id, {appointments:req.body.appointments, status:"appointments pending"})
      return res.send(appintenent)
     }catch(err){
         return res.send(err)
@@ -49,7 +53,8 @@ const document = async(req , res )=>{
       Upload_document = new Document({
          document_name: req.body.document_name,
          image: req.file.path,
-         clien_id:req.params.id ,
+         client_id:req.params.id ,
+         status: "Payment Pending"
           })
           await Upload_document.save()
     }catch(err){
@@ -59,11 +64,11 @@ const document = async(req , res )=>{
 //---------------------------------------------Payment------------------------------------------
 const payment = async(req , res )=>{
     try{
-        console.log(uuid)
+        
         client_payment= await Client.findByIdAndUpdate(req.params.id, {
             payment_mode:req.body.payment_mode,
             Priority:req.body.Priority,
-            Transaction_Id:uuid ,
+            Transaction_Id:uuidv4(),
            Amount_AED: req.body.amount,
            status:"payment ok"
         })

@@ -1,5 +1,5 @@
 const express = require('express');
-const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, insertQuery, showQuery, updateQuery, showClients, viewDetails, showCategory, showSubCategory, } = require('../controller/admin');
+const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, insertQuery, showQuery, updateQuery, showClients, viewDetails, showCategory, showSubCategory, manageApplication, OneApplication, } = require('../controller/admin');
 const {login} = require('../controller/auth/login');
 const{ register} = require('../controller/auth/register');
 const { client,  client1, appintenents , document, payment, showClient} = require('../controller/users');
@@ -35,5 +35,7 @@ router.post('/uploadDocument/(:id)', upload.single('image'), document )
 router.put('/payment/(:id)', payment)
 router.get('/category/(:id)', showCategory)
 router.get('/subCategory/(:id)', showSubCategory)
+router.get('/manageApplication', manageApplication)
+router.get('/oneApplication/(:id)',OneApplication)
 module.exports = router;
  

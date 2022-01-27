@@ -293,8 +293,27 @@ const showSubCategory = async(req , res)=> {
         return res.send(e);
     }
 };
-console.log(Sub_Category);
-
+//----------------------------------------------------manage Application-----------------------------------------------
+const manageApplication = async(req , res )=>{
+    try{
+        applicatiion = await Client.find().select({createdAt:1 ,services_id:1, Transaction_Id:1,status:1, Amount_AED:1,payment_mode:1,}).papuleat({servisec_id})
+        return res.send(applicatiion)
+    }catch(err){
+        return res.send(err)
+    }
+}
+//-----------------------------------------Application ----------------------------------------------------------------------
+const OneApplication = async(req, res)=>{
+    try{
+        var id = req.params.id;
+        console.log(id)
+        applicatiion = await Client.findById(id)
+        return res.send(applicatiion)
+    
+    }catch(err){
+        return res.send(err)
+    }
+}
 
 module.exports = {
     offer ,
@@ -313,6 +332,9 @@ module.exports = {
     showClients, 
     viewDetails, 
     showSubCategory,
-    showCategory
+    showCategory,
+    manageApplication,
+    OneApplication
+
        }
 	

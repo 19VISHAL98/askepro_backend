@@ -9,6 +9,7 @@ const router = require('./src/routes/router');
 const bodyParser= require('body-parser')
 const{options} = require('./src/uploads/path')
 const cors = require('cors');
+const index = require('uuid-random');
 app.use(express.json());
 app.use (express.urlencoded({ extended: true }))
 app.use(express.static('./src/uploads'))

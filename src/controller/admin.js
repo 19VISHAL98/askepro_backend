@@ -168,15 +168,15 @@ const updateFaq = async(req, res)=>{
  //------------------------------SHOW SERVICES----------------------------------------------------------
  const showServices = async(req, res)=>{
      try{
-     const auth = verifyToken(req, res);
-     if(auth.user_type === admin){
+    //  const auth = verifyToken(req, res);
+    //  if(auth.user_type === admin){
      const services = await Services.find();
      return res.send(services);
-     }else{
-         return  res.send("you are not admin")
-     }
-     }catch (e){
-       return  res.send(e)
+    //  }else{
+    //      return  res.send("you are not admin")
+    //  }
+     }catch (err){
+       return  res.send(err)
      }
  }
 
@@ -313,8 +313,6 @@ module.exports = {
     showClients, 
     viewDetails, 
     showSubCategory,
-    showSubCategory
-
-
+    showCategory
        }
 	

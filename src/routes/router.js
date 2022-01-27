@@ -1,8 +1,8 @@
 const express = require('express');
-const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, insertQuery, showQuery, updateQuery, showClients, viewDetails, } = require('../controller/admin');
+const { offer, showOffer, faq, showFaq, service, showServices, deleteFaq, updateFaq, viewOffer, deleteOffer, insertQuery, showQuery, updateQuery, showClients, viewDetails, showCategory, showSubCategory, } = require('../controller/admin');
 const {login} = require('../controller/auth/login');
 const{ register} = require('../controller/auth/register');
-const { client, show, client1, appintenents , document, payment} = require('../controller/users');
+const { client,  client1, appintenents , document, payment, showClient} = require('../controller/users');
 const{upload } = require('../middleware/multer')
 
 const router = express.Router();
@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/register', register)
 router.post('/api/offer', upload.single('image'), offer)
-router.get('/api/show',show)
+router.get('/showClient',showClient)
 router.post('/offer', upload.single('image'), offer)
 router.get('/offer',showOffer)
 router.post('/view/(:id)',  viewOffer)
@@ -33,5 +33,7 @@ router.put('/client/(:id)', client1)
 router.put('/appintenent/(:id)', appintenents),  
 router.post('/uploadDocument/(:id)', upload.single('image'), document ) 
 router.put('/payment/(:id)', payment)
+router.get('/category/(:id)', showCategory)
+router.get('/subCategory/(:id)', showSubCategory)
 module.exports = router;
  

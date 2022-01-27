@@ -11,11 +11,7 @@ const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
 const { Client } = require('../models/client')
-<<<<<<< HEAD
-const { nextTick } = require('process')
-=======
-const { Sub_Category } = require('../models/sub_category')
->>>>>>> 38a92cfeef074cd0f2a57c489ed88070bb1cbec6
+const { Sub_Category } = require('../models/sub_category') 
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -285,14 +281,19 @@ const showCategory = async(req ,res) => {
 
 };
 
-// const showSubCategory = async(req , res)=> {
-//   try{
-//       const subCategory = await Sub_Category
-//   }
-//     catch(e){
-//         return res.send(e);
-//     }
-// };
+//--------------------------------------------Sub-Category--------------------------------------------
+
+const showSubCategory = async(req , res)=> {
+  try{
+      const subCategory = await Sub_Category.find({category_id: req.params.id});
+      return res.send(subCategory);
+      
+  }
+    catch(e){
+        return res.send(e);
+    }
+};
+console.log(Sub_Category);
 
 
 module.exports = {
@@ -310,7 +311,10 @@ module.exports = {
     showQuery,
     updateQuery, 
     showClients, 
-    viewDetails
+    viewDetails, 
+    showSubCategory,
+    showSubCategory
+
 
        }
 	

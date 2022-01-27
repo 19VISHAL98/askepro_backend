@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 //  let n= [1,2,3]
 
 // let m  =[['a'], ['b'], ['c']]
@@ -17,3 +18,5 @@ m.forEach(k => {
         console.log(i, k)
     });
 });
+=======
+>>>>>>> 38a92cfeef074cd0f2a57c489ed88070bb1cbec6

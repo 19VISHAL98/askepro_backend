@@ -12,6 +12,7 @@ const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
 const { Client } = require('../models/client')
 const { Sub_Category } = require('../models/sub_category') 
+const { resolveSoa } = require('dns')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -293,7 +294,31 @@ const showSubCategory = async(req , res)=> {
         return res.send(e);
     }
 };
-console.log(Sub_Category);
+// console.log(Sub_Category);
+
+// -------------------------------------Payment------------------------------------------------------------
+
+const showPayment = async(req, res)=> {
+    try{
+        const payment = await Client.find().select({createdAt:1, Transaction_Id:1, services_id:1, name:1, Payment_mode:1, Amount_AED:1, status:1 });
+        return res.send(payment);
+    }
+    catch(e){
+        return res.send(e);
+    }
+};
+
+// ------------------------------------------Appointment ----------------------------------------------------
+
+const showAppointment = async(req ,res)=> {
+    try{
+        const appointment = await Client.find().select({_id:1, name:1, email:1, mobile_no:1, appointments:1})
+        return res.send(appointment);
+    }
+    catch(e){
+        return res.send(e);
+    }
+}
 
 
 module.exports = {
@@ -313,6 +338,7 @@ module.exports = {
     showClients, 
     viewDetails, 
     showSubCategory,
-    showCategory
+    showCategory, 
+    showPayment
        }
 	

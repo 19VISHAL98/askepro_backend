@@ -16,4 +16,4 @@ m.forEach(k => {
     n.forEach(i => {
         console.log(i, k)
     });
-};
+});

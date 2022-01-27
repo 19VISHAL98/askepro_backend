@@ -21,6 +21,7 @@ const bcrypt = require('bcrypt');
        });
        await user.save();
        res.send(user);
+       console.log(res);
    }
 }
 catch (err)

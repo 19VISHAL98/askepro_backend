@@ -11,6 +11,7 @@ const {Category} = require('../models/category')
 const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
 const { Client } = require('../models/client')
+const { nextTick } = require('process')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{
@@ -248,6 +249,29 @@ const viewDetails = async(req, res) => {
         return res.send(e);
     }
 };
+
+// -------------------------------------Category ---------------------------------------------------------
+
+const showCategory = async(req ,res) => {
+    try {
+        const category = await Category.find({services_id: req.params.id});
+        return res.send(category);
+    }
+    catch(e)
+    {
+        return res.send(e);
+    };
+
+};
+
+// const showSubCategory = async(req , res)=> {
+//   try{
+//       const subCategory = await Sub_Category
+//   }
+//     catch(e){
+//         return res.send(e);
+//     }
+// };
 
 
 module.exports = {

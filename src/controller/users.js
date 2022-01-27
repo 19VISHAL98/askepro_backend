@@ -19,7 +19,7 @@ catch (e){
 const client1 = async(req , res)=>{
     try{
         client = await Client.findByIdAndUpdate(req.params.id, { 
-             name: req.body.name,
+            name: req.body.name,
             email: req.body.email,
             mobile_no: req.body.mobile_no,
             location:req.body.location,

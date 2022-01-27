@@ -38,4 +38,3 @@ router.get('/subCategory/(:id)', showSubCategory)
 router.get('/manageApplication', manageApplication)
 router.get('/oneApplication/(:id)',OneApplication)
 module.exports = router;
- 

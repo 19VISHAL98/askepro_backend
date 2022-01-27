@@ -12,6 +12,7 @@ const verifyToken = require('./auth/verify')
 const { Query } = require('../models/query')
 const { Client } = require('../models/client')
 const { Sub_Category } = require('../models/sub_category') 
+const { resolveSoa } = require('dns')
 
 //-----------------------------------ADD OFFER -----------------------------------------------------------
  const offer = async(req, res )=>{

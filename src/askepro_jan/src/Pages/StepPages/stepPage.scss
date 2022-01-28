@@ -1,0 +1,505 @@
+@import '/src/Sass/variables.scss';
+@import '/src/Sass/index.scss';
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+
+
+//Heading 
+
+.header{
+    text-align: center;
+    margin:20px 0 39px;
+    
+    &:after{
+        margin-top: 10px;
+        margin: 0 auto;
+        content: '';
+        display: block;
+        width: 80px;
+        height: 10px;
+        background: linear-gradient(to right, #c7a006, #e7ed32 50%, #c7a006);
+        clip-path: polygon(11% 0, 89% 0, 100% 100%, 0% 100%);
+    }
+}  
+
+
+
+//apply Page
+main{
+    width: 100%;
+     
+.apply-section{
+    padding: 0 40px;
+
+    @include tablet{
+        padding: 0 20px;
+    }
+
+   .form{
+    padding: 30px;        
+    
+    .checkbox{
+        background-color:$white;
+        border: 1px solid #f4f4f4;
+        min-height: 60px;
+        padding:20px;   
+        display: flex !important;
+        margin:20px;
+        align-items: center;
+    
+        .state{
+            position: absolute;
+        }
+
+        label{
+            font-weight: normal;
+            font-size: 14px !important;
+            margin-left: 15px;
+            }
+            }
+     }
+}   
+
+
+// Book Appointment 
+.book-section{
+    width: 100%;
+    padding: 0 40px;
+    
+    @include tablet{
+        padding: 0 20px;
+    }
+
+        .header{
+            text-align: center;
+            margin:0px 0 39px !important;
+            
+            &:after{
+                margin-top: 10px !important;
+                margin: 0 auto;
+                content: '';
+                display: block;
+                width: 80px;
+                height: 10px;
+                background: linear-gradient(to right, #c7a006, #e7ed32 50%, #c7a006)  !important;
+                clip-path: polygon(11% 0, 89% 0, 100% 100%, 0% 100%);
+            }
+        }
+        .form{
+            padding: 20px;
+            background-color: #fff;
+            font-family: 'Lato' !important;
+
+            .date-title {
+                text-align: center;
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 20px;
+          }
+            
+    }
+}
+
+//Fill Documents
+ .fill-section{   
+     padding: 0 40px;    
+    @include tablet{
+        padding: 0 20px;
+    }
+.form{        
+    background-color: #fff;
+    padding: 30px;
+    font-family: 'Lato' !important;
+
+    .message{
+        background-color: rgba($red, 0.15) !important;
+        color:$red;
+        padding:15px 15px 8px;
+        margin-bottom: 30px !important;
+        display: flex;            
+        display: none;
+        .close{
+            @include flex;
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            margin-right: 10px;
+            border: 1.3px solid #e5181a;
+        }
+        .alert{
+            font-weight: 500;
+        }
+    }
+    label{
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+     .input, .selection{
+        width: 95%;
+        height: 40px !important;
+        margin-bottom: 20px !important;
+
+    }
+    .outline{
+        color:$black !important;
+        font-size: 20px;
+    }
+    .radio-group{
+        
+        .radio-item{
+         border: none;
+         padding: 0px !important;
+         margin-bottom:20px;
+         width: auto;
+         height: auto;
+        }
+    }
+
+}
+}
+
+
+//Upload Documents 
+.upload-form{
+    background-color: #fff;
+    padding: 30px 100px !important;
+    font-family:  'Lato' !important;
+
+    @include tablet{
+        padding: 30px !important;
+    }
+
+    label{
+        display: block;
+        font-weight: bold !important;
+        margin-bottom: 10px;
+         }
+        .upload-container{
+            border: 1px dashed #d5d5d5;
+            padding: 30px !important; 
+            display: flex;
+            justify-content: center;
+        
+            .btn-upload{
+                margin-top: 29px;
+                height: 40px;
+                background-color: #fff !important;
+                border-radius: 20px !important;
+                border: solid 1px #000000 !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                color: #000 !important;   
+                
+                @include tablet{
+                    margin-top: 0%;
+                }
+        
+                &:hover{
+                    border: 1px solid transparent !important;
+                    background: $hover-color;
+                }
+               
+            }
+            .file{
+                border: 1px solid #e9e9e9;
+                border-radius: 4px;
+                label{
+                    padding: 10px 15px 0 !important;
+                    font-weight: normal !important;
+                    opacity: 0.5;
+                }
+            }
+            .input{
+                width: 100%;
+            }
+        
+         }
+        .document-list{
+            margin-top: 30px !important;
+            .item{
+                margin-bottom: 10px;
+                color: #808080 !important;
+               font-size: 16px;
+                }
+            .icon{
+                transform: rotate(45deg);
+                font-size: 10px !important;
+         }
+      }
+    }
+
+
+//Payment Step
+
+.payment-section{
+    padding: 0px 40px !important;
+    
+    @include tablet{
+        padding: 0 20px 40px !important;
+    }
+
+
+    .radio{
+        width: 100%;
+        background-color:$white;
+        height: 60px;
+        border: 1px solid #f4f4f4;
+        display: flex !important;
+        align-items: center;
+        padding:0px 20px 0;
+        }
+
+.heading{
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #9d9494;
+} 
+ 
+.form{
+    padding:30px 100px;
+
+    
+    @include tablet
+    {
+        padding: 30px 50px;
+    }    
+    
+    .payment-header,.payment-header2{
+        font-weight: 500 !important;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 10px !important
+    }
+    h3{
+    font-family:  'Lato';    
+}
+select{
+    width: 100% !important;
+    height: 60px;
+    padding: 0 15px;
+    border: solid 1px #f4f4f4;
+    background: #ffff;
+
+}
+.payment-header2{
+    margin-top: 35px;
+}
+.payment-container{
+    border: 1px solid #e6e6e6;
+    padding:20px 30px;
+    margin-bottom: 35px;
+    box-shadow: 0px 0px 10.2px #e0e0e0;
+    z-index: 1;
+
+    .value{
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        display: block !important;
+    }
+    .fees{
+        color:#000;
+    }
+    .total{
+        font-size: 18px !important;
+        font-family: 'Lato' !important;
+        font-weight: bold !important;
+        }
+    }
+    
+.notice{
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #9d9494;
+    display: block;
+    padding:10px 0;
+            }
+        }   
+    }
+
+
+// Successs 
+.success-main{
+    padding: 0 40px;
+
+    
+    @include tablet{
+        padding: 0 20px;
+    }
+
+
+    .heading{
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        color: #9d9494;
+    } 
+
+    .success-form{
+    background-color: #fff;
+    font-family: 'Lato' !important;
+    padding:30px 100px; 
+    
+    @include tablet{
+        padding: 30px !important;
+    }
+    label{
+        display: block;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 7px;
+    }
+     .input, .selection{
+        width: 95%;
+        height: 40px !important;
+        margin-bottom: 20px !important;
+    }
+
+
+
+.success-box{
+    width: 100%;
+    @include flex;
+    justify-content: flex-start;
+    margin-bottom: 30px !important;
+
+    @include tablet{
+        flex-direction: column;
+        margin:10px !important;
+    }
+
+    .icon{
+        font-size: 50px;
+        color:#fff;
+        background-color: #8dc640;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65px;
+        height: 65px;
+        border-radius: 25px;
+
+        @include tablet{
+            margin:0 10px 10px;
+        }
+        }
+        .text{
+            font-family: 'Lato';
+            font-size: 18px;
+            font-weight: bold !important;
+            color: #9d9494;
+            margin: 0 30px;
+        }
+    }   
+    .paid-label{
+        font-size: 14px !important;
+        font-weight: normal !important;
+    }
+     
+    .total-label{
+        font-family: 'Lato' !important;
+        font-size: 18px !important;   
+    }
+    .status{
+        color: #4ca0dd !important; 
+        background: rgba(#4ca0dd, 0.15) !important; 
+        padding: 2px 10px !important;
+        border-radius: 20px !important;
+    }
+    .value{
+        font-weight: normal !important;
+        width:100px;
+    }
+    .event-card{
+        border:1px solid #e6e6e6;
+        padding: 10px 10px 0;
+        display: flex;
+
+        .calender{
+            padding: 10px 10px 0px;
+            margin-bottom: 30px;
+            background: #f7f7f7;
+            @include tablet{
+                display:flex !important;
+                flex-direction: column;
+                align-content: center;
+                justify-content: center;
+                width: 100px;
+                text-align: center;
+            }
+            .date{
+                font-size: 30px;
+                display: block !important;
+             }
+             .month{
+                 font-size: 12px;
+                 display: block !important;
+             }
+        }
+        .event-info{
+            margin:0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            @include tablet{
+                padding: 10px;
+            }
+            .upcoming{
+                background: linear-gradient(252deg, #c7a006, #e7ed32 50%, #c7a006)  !important;
+                padding: 2px 10px !important;
+                border-radius: 20px !important;
+            }
+            p{
+                margin:10px 0;
+                font-size: 14px !important;
+                font-weight: bold;
+            }
+            .time{
+                font-size: 14px;
+                font-family: 'Lato';
+                font-weight: bold;
+                color: #9d9494;
+            }
+        }
+    }
+}
+.bottom-btn{
+    width: 100%;
+    display: flex !important; 
+    justify-content: center;
+    border-top:1px solid #e6e6e6;
+    padding:20px 0;
+    
+    .btn{
+        width: 20%;
+        font-family: 'Lato' !important;
+        margin:15px !important;
+        height: auto;
+        color: black !important;
+        background: #fff !important;
+        font-weight: bold !important;
+        font-size: 15px !important;
+        border: 1px solid black !important;
+        border-radius: 20px !important;
+        text-transform: uppercase !important;
+
+        @include tablet{
+            width: 50%;
+        }
+
+        &:hover{
+            background: linear-gradient(252deg, #c7a006, #e7ed32 50%, #c7a006)  !important;
+            border:transparent !important;
+        }
+    }
+}
+}
+
+
+
+}
+ 
+
+

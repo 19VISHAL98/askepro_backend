@@ -1,0 +1,25 @@
+@import '/src/Sass/variables.scss';
+@import '/src/Sass/index.scss';
+
+.breadcrumb{
+    padding: 15px 0;
+    display: flex !important; 
+    align-items: center;
+    font-family: 'Lato';
+    font-size: 12px !important;     
+
+    @include tablet{
+        margin-left:15px !important;
+    }
+    .active{
+        color:black !important; 
+        font-weight: 500 !important;
+        cursor: pointer;
+    }
+    a{           
+     color:$disabled-color !important;
+    }
+  .icon{
+      font-size: 16px !important;
+  }
+}

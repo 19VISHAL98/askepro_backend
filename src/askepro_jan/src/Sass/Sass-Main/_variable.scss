@@ -1,0 +1,600 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:200");
+
+/* ////color/// */
+$primary-color: rgb(199, 160, 6);
+$gradient: linear-gradient(251deg, #c7a006, #e7ed32, #c7a006) !important;
+
+@mixin para {
+  font-size: 16px;
+  line-height: 1.25;
+  font-family: Helvetica;
+  color: #000000;
+}
+@mixin form_para {
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  line-height: 1.21;
+  color: #000000;
+}
+@mixin login_property {
+  position: absolute;
+  text-align: center;
+  top: 6%;
+  left: 35%;
+  background-color: #ffffff;
+  width: 450px;
+  height: auto;
+  padding: 30px 50px;
+}
+
+@mixin main_heading {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.21;
+  color: #000000;
+}
+
+.date_time {
+  @include main_heading;
+  color: #9d9494;
+  font-weight: 500;
+}
+@mixin para7 {
+  text-decoration: underline;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+}
+@mixin para11 {
+  text-align: right;
+  text-decoration: underline;
+  cursor: pointer;
+}
+@mixin after {
+  content: "";
+  display: block;
+  width: 79px;
+  height: 4px;
+  background: $gradient;
+  clip-path: polygon(0 0, 87% 0, 100% 100%, 0% 100%);
+}
+@mixin hover_before {
+  content: "";
+  position: absolute;
+  right: 0px;
+
+  bottom: 0px;
+  width: 79px;
+
+  height: 79px;
+
+  border-bottom: 9px solid #d4bf19;
+  border-right: 9px solid #dbd022;
+
+  clip-path: polygon(100% 0%, 100% 0%, 0% 100%, 100% 100%);
+}
+
+@mixin hover_after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  z-index: 0;
+  top: 0px;
+  width: 79px;
+  height: 79px;
+
+  border-left: 9px solid #dbd022;
+
+  border-top: 9px solid #d4bf19;
+
+  clip-path: polygon(0% 0, 100% 0%, 50% 50%, 0% 100%);
+}
+@mixin center_after {
+  margin-top: 10px !important;
+  margin: 0 auto;
+  content: "";
+  display: block;
+  width: 80px;
+  height: 9px;
+  background: $gradient;
+  clip-path: polygon(11% 0, 89% 0, 100% 100%, 0% 100%);
+}
+@mixin banner_heading {
+  color: #ffff;
+  font-size: 44px;
+  line-height: 1.18;
+  font-weight: bold;
+}
+@mixin contact_p {
+  font-family: Open Sans;
+  font-size: 18px;
+  line-height: 1.33;
+}
+@mixin admin_after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  border-radius: inherit;
+  background: $gradient;
+  margin: 0 14px;
+}
+.form-btn {
+  font-family: Lato;
+  width: 100%;
+  height: 40px;
+  padding: 11px 25px;
+  border: 1px solid #000;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  object-fit: contain;
+  border-radius: 20px;
+  color: #000;
+  cursor: pointer;
+}
+.form-btn:hover {
+  background: rgb(199, 160, 6);
+  background: $gradient;
+  color: #000;
+  border: 1px solid transparent;
+}
+/* ///Media query/// */
+@media (max-width: 1445px) {
+  .footer{
+  .ui.column.grid>[class*="seven wide"].column{
+    width: 100% !important;
+  }
+}
+ }
+@media (max-width: 1039px) {
+  .reach {
+    width: 100%;
+    .information {
+      position: relative;
+      margin: 0 auto;
+      top: 2rem;
+      
+    }
+    .reach-Submit{
+      display: block;
+      text-align: center;
+    }
+  }
+  .tourist .hours-content {
+    padding: 0 5px;
+    width: 100%;
+  }
+  .service-card,
+  .service-card2 {
+    height: 100%;
+    padding: 15px;
+    p {
+      font-size: 14px;
+    }
+  }
+  .footer {
+    padding: 50px;
+.footer-part-1{
+  width: 100%;
+}
+    .footer-part-2 {
+      float: left;
+      & a {
+        text-align: right !important;
+        display: flex;
+        align-items: flex-end !important;
+        align-content: flex-end;
+        padding: 0;
+        margin: 0;
+        margin-top: 25px;
+      }
+      & p {
+        text-align: justify;
+      }
+    }
+  }
+  .company p{
+    width: 100%;
+  }
+  .admin_wrapper2{
+    padding: 0 1rem;
+  }
+.team{
+  padding-top: 0;
+} .my_journey{
+height: 75vh !important;
+max-width: 100%;
+  .journey_tree{
+    transform: translateX(0%);
+    padding-left: 5rem;
+    img {
+      border-radius: 0% !important;
+      
+      height: 100px !important;
+      background-color: red !important;
+    }
+    
+  }
+  
+  
+  .even_child_content{
+    left: 2%;
+    &::after{
+      content: none;
+    }
+  }
+  .odd_child_content{
+  margin-left: 2rem;
+  &::before{
+    content: none;
+  }}
+  
+  
+}
+}
+
+
+@media (max-width: 780px) {
+  .video_wrapper{
+    height: 60vh;
+    h1{
+      font-size: 38px !important;
+    }
+    p{
+      font-size: 18px !important;
+    }
+  }
+  .home {
+    .home-content {
+      padding: 4rem 10px;
+    }
+    & h1 {
+      font-size: 30px;
+    }
+    & p {
+      font-size: 16px;
+    }
+  }
+
+  .service-banner {
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 16px;
+    }
+
+    .banner-content {
+      padding: 10px;
+      transform: none;
+    }
+  }
+
+  .team {
+    width: 100%;
+    padding: 20vh 0 8rem 0;
+    team-name {
+      text-align: right;
+    }
+    .about-card{
+      margin: 50px 0 15px 0!important;
+    }
+  }
+  /* //about section// */
+  .about {
+    margin: 0 !important;
+    height: 60rem;
+    .about-content {
+      text-align: center;
+      left: 0%;
+      height: 90vh;
+
+    }
+  }
+  .contact p {
+    padding: 20px 0 62px 0;
+  }
+
+  /* //login section// */
+  .loginx {
+    .loginx_form,
+    .loginx_form2,
+    .loginx_form3 {
+      left: 22%;
+      padding: 15px 25px;
+    }
+  }
+
+  /* //account page media// */
+  .my_user {
+    display: block;
+    .user_inner3 {
+      margin: 0px;
+    }
+  }
+  /* ///view details /// */
+  .view_detail_wrapper {
+    tr {
+      text-align: center;
+    }
+    .vertical_step1 {
+      display: block;
+      padding: 5px;
+    }
+    .vertical_step1 p {
+      margin: 0;
+    }
+    .vertical_step4 {
+      margin: 0;
+      width: 100%;
+    }
+    .vertical_step4_inner1 {
+      display: block;
+    }
+    .vertical_step4_inner1 p {
+      margin: auto;
+    }
+    .appoint2 {
+      width: 100%;
+    }
+    .date {
+      padding: 0;
+    }
+  }
+  .step {
+    .circle {
+      &::after {
+        top: -7px;
+      }
+    }
+    .step_heading p {
+      margin-bottom: 2rem;
+    }
+
+    .dashed_line {
+      display: none;
+    }
+  }
+  .customer p {
+    width: auto;
+  }
+  .banner3 {
+    width: 100%;
+    .pop_content {
+      width: 30% !important;
+    }
+    .cancel-tab {
+      margin-right: 6.25rem;
+    }
+  }
+
+  .user_heading {
+    width: 100% !important;
+  }
+  .reach {
+    padding-bottom: 6rem;
+    .information {
+      position: relative;
+      display: block !important;
+      top: 2rem;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .crumb{
+    left: 0px !important;
+    margin-left: 0px !important;
+  }
+  .breadcrumb{
+    left: 0 !important;
+  }
+  .content_list_item{
+    width: 4.5rem !important;
+    height: 3.5rem !important;
+   
+  }
+  .journey_tree{
+    img{
+      width: 60px !important;
+      height: 50px !important;
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 480px) {
+  .contact {
+    p {
+      padding: 0px 7px !important;
+    }
+  }
+  .video_wrapper{
+    height: 82vh;
+    h1{
+      font-size: 33px !important;
+    }
+  }
+  .address{
+    padding: 2rem;
+  .contact-details-1{
+    padding: 0 10px !important;
+    p{
+      font-size: 0.90rem !important;
+    
+    }
+  }
+  .contact-details{
+    padding: 0 10px !important;
+    p{
+      font-size: 0.90rem !important;
+    
+    }
+    }
+ 
+
+  }
+
+  .home {
+    width: auto;
+    display: block;
+    height: auto;
+    .home-content {
+      padding: 2rem;
+      background: #fff; /* fallback color for old browsers */
+      background: rgba(255, 255, 255, 0.6);
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+    }
+    & h1 {
+      font-size: 26px;
+    }
+    & p {
+      font-size: 14px;
+    }
+
+    .home-bg {
+      width: 100%;
+      position: relative;
+    }
+    & img {
+      width: 100%;
+    }
+  }
+
+  .step {
+    .circle {
+      &::after {
+        top: -7px;
+      }
+    }
+    .step_heading {
+      & p {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .banner3 {
+    max-width: 100%;
+    height: 10% !important;
+    padding-left: 10px !important;
+    right: 30%;
+
+    img {
+      display: none;
+    }
+    .pop_content p {
+      display: none;
+    }
+    .pop_content h6 {
+      padding-bottom: 1rem;
+      padding: 10px 0 0 0;
+      font-size: 14px;
+    }
+    .pop_btn {
+      margin: 0 18% 5px 0;
+    }
+  }
+
+  .about  {
+    height: 79rem !important;
+   
+    .about-content {
+      margin: 0 !important;
+    
+   
+      height: auto !important;
+     
+    }
+  }
+  .team{ 
+    padding: 10rem 0 5rem 0;
+    margin-top: 20rem;
+  .about-card {
+    width: auto;
+    height: auto;
+  }
+}
+
+  .loginx {
+    padding: 15px;
+    .loginx_form,
+    .loginx_form2,
+    .loginx_form3 {
+      width: auto;
+      left: 0;
+      padding: 15px;
+    }
+  }
+  .details_wrapper_inner {
+    .order_details {
+      width: 35.75% !important;
+    }
+  }
+
+  .reach {
+    padding: 10px;
+    padding-bottom: 5rem;
+  }
+  .headingOne,
+  h1, h2 {
+    font-size: 17px !important;
+    width: 100%;
+  }
+  .footer{
+    padding: 15px;
+    .footer-part-1 img{
+    display: block;
+    }
+  }
+  .my_journey{
+    height: 120vh !important;
+max-width: 100% !important;
+    .journey_tree {
+      position: relative;
+  margin: 0;
+  padding: 0 1rem;
+      transform: translateX(0);
+    }
+  }
+
+}
+@media only screen and (max-width: 380px) {
+.team{
+  padding: 0 !important;
+  padding-top: 38vh !important;
+ }
+ .my_journey{
+  
+  max-width: 100% !important;
+}
+team_column {
+  background-color: red !important;
+  
+}
+.information .reach-Submit p{
+  line-height: 20px;
+}
+.address .information{
+  height: auto;
+}
+}
+@media only screen and (max-width: 330px) {
+  .team{
+    padding: 0 !important;
+    margin-top: 150vh !important;
+   }
+  
+  
+  }
+  

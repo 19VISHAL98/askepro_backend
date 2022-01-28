@@ -1,0 +1,265 @@
+@import "./variable";
+
+.admin_wrapper2 {
+  height: 120vh;
+  margin-top: 20px;
+  max-width: 100% !important;
+}
+.history-main .breadcrumb {
+  padding-left: 0px;
+  padding-top: 24px;
+}
+.overview5 {
+  p {
+    @include main_heading;
+  }
+  &:after {
+    @include after;
+    margin: 6px 0 10px 0;
+  }
+}
+
+.clients {
+  text-align: center;
+  background-color: #ffffff;
+  height: 128px;
+  h6 {
+    color: #cccccc;
+    line-height: 1.19;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 30px 0 6px 0;
+  }
+  h1 {
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: bold;
+    color: #000000;
+    margin: 0;
+    padding-bottom: 27px;
+  }
+  &::after {
+    @include admin_after;
+  }
+}
+.revenue_data {
+  margin-top: 14px;
+  height: auto;
+  padding: 0 1rem;
+
+  .row > .column {
+    padding: 0px !important;
+  }
+}
+
+.Revenue {
+  height: 37px;
+  border: solid 1px #e6e6e6;
+  background: #ffffff;
+  width: 100% !important;
+
+  .revenue_btn {
+    font-size: 14px !important;
+    color: #b2b2b2 !important;
+    line-height: 1.21 !important;
+    font-weight: normal !important;
+    background: #ffffff !important;
+    position: relative !important;
+    border: solid 1px #e9e9e9 !important;
+    /*   &:hover {
+      font-weight: bold;
+      color: #000;
+    } */
+  }
+  .revenue_btn.active {
+    font-weight: bold !important;
+    color: #000 !important;
+    &::after {
+      position: absolute !important;
+      content: "" !important;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      width: 0.5rem;
+      height: 0.5rem;
+      z-index: -1;
+      background: #e7ec32 !important;
+    }
+    &::before {
+      @include admin_after;
+      margin: 0 !important;
+      width: 100% !important;
+    }
+  }
+}
+
+.appointment_heading2 {
+  margin: 0;
+
+  p {
+    @include main_heading;
+    position: relative;
+    margin-bottom: 33px;
+  }
+  &::after {
+    @include after;
+    margin: 6px 0 10px 0;
+  }
+
+  .para9 {
+    @include para11;
+  }
+}
+
+.appointment_heading3 {
+  margin: 0;
+  padding-top: 28px;
+  p {
+    @include main_heading;
+    position: relative;
+    margin-bottom: 33px;
+  }
+  &::after {
+    @include after;
+    margin: 6px 0 10px 0px;
+  }
+
+  .para9 {
+    @include para11;
+  }
+}
+
+.data7 {
+  display: flex;
+  margin-bottom: 25px;
+  p {
+    @include main_heading;
+  }
+  .para8 {
+    @include para7;
+  }
+}
+/* //View_all_details/// */
+.details_wrapper {
+  background: #fcfcfc;
+  border: solid 1px #e6e6e6;
+}
+.details_wrapper2 {
+  background: #fcfcfc;
+  border: solid 1px #e6e6e6;
+  border-top: none;
+}
+.my_details {
+  display: flex;
+  background: #ffffff;
+
+  width: 910px;
+  padding: 30px 30px 6px 30px;
+  .detail_inner1 {
+    color: #000000;
+    width: 20%;
+    & p {
+      margin-bottom: 24px !important;
+      @include form_para;
+      color: #b2b2b2;
+      line-height: 1.43;
+      font-weight: 500;
+    }
+    & h4 {
+      margin-bottom: 20px !important;
+      @include form_para;
+      line-height: 1.43;
+      font-weight: 600 !important;
+    }
+  }
+  .detail_inner2 {
+    background: #ffffff;
+
+    & p {
+      margin-bottom: 24px !important;
+      @include form_para;
+      line-height: 1.43;
+      font-weight: normal !important;
+    }
+    & h4 {
+      margin-bottom: 20px;
+      visibility: hidden;
+      @include form_para;
+      line-height: 1.43;
+      font-weight: 600 !important;
+    }
+  }
+  .appoint_wrapper {
+    background: red !important;
+    height: 200px;
+    width: 100%;
+  }
+}
+/* //graph filter/ */
+
+.filter {
+  margin: 0 20px;
+  label {
+    margin-top: 8px !important;
+    line-height: 1.25;
+    color: #cccccc !important;
+    text-align: left !important;
+    margin-top: 23px !important;
+  }
+
+  .select2 select {
+    height: auto;
+    width: 230px !important;
+    border: solid 1px #e9e9e9 !important;
+  }
+  .select2 label {
+    text-align: right;
+    margin-top: 23px !important;
+    line-height: 1.25;
+  }
+  .select select {
+    width: 120px !important;
+    border: solid 1px #e9e9e9 !important;
+  }
+  .grey_btn {
+    background: #fff !important;
+
+    height: 37px !important;
+    border: solid 1px #e9e9e9 !important;
+    margin-top: 43.25px !important;
+    border: solid 1px #e9e9e9;
+    @include form_para;
+    color: #b2b2b2 !important;
+    &:hover {
+      color: #000 !important;
+    }
+  }
+  .grey_btn.active {
+    &.active {
+      font-weight: bold !important;
+      color: #000 !important;
+    }
+  }
+}
+/* ///Add service//// */
+.application_types {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .button{
+    background-color: #fff !important;
+    border: none;
+    
+  
+  }
+  
+}
+
+.admin_accordion{
+  border: 1px solid #000 !important;
+  padding: 20px !important;
+  border: 1px solid rgba(34,36,38,.15) !important;
+  label{
+    text-align: left;
+  }
+}

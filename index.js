@@ -10,11 +10,12 @@ const bodyParser= require('body-parser')
 const{options} = require('./src/uploads/path')
 const cors = require('cors');
 const index = require('uuid-random');
+
+app.use(cors());
 app.use(express.json());
 app.use (express.urlencoded({ extended: true }))
 app.use(express.static('./src/uploads'))
 app.use(router);
-app.use(cors());
 const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
 

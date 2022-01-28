@@ -180,7 +180,25 @@ const updateFaq = async(req, res)=>{
        return  res.send(err)
      }
  }
+//---------------------------------------------------Delete Services--------------------------------------------------------
+const deleteServices = async(req , res )=>{
+    try{
+        const ServicesRemove= await Services.findByIdAndRemove(req.params.id)
+       // return res.send(remove)
+       res.send(ServicesRemove._id)
+        let image = remove.image;
+        fs.unlink(image, function (err) {
+            if (err) throw err;
+            console.log('File deleted!');
+        });
+        const categoryRemove = await Category.deleteMany({services_id :ServicesRemove})
+       let n = categoryRemove._id
+       n.forEach(k=>Sub_Category.deleteMany({category_id:k}))
 
+    }catch(err){
+        return res.send(err)
+    }
+}
 //-------------------------------Query-----------------------------------------------------------------------
 
 const insertQuery = async(req, res) => {
@@ -315,6 +333,16 @@ const OneApplication = async(req, res)=>{
         return res.send(err)
     }
 }
+const appointement = async(req, res)=>{
+    try{
+        const  appointementDate = await Client.find({"appointments":{$ne: null}}).select({name:1,email:1,mobile_no:1,createdAt:1 ,appointments:1});
+        return res.json({appointementDate})
+
+    }catch(err){
+        return res.json(err)
+    }
+}
+//-------------------------------------------------
 
 module.exports = {
     offer ,
@@ -335,7 +363,9 @@ module.exports = {
     showSubCategory,
     showCategory,
     manageApplication,
-    OneApplication
-
+    deleteServices,
+    OneApplication,
+    appointement
+ 
        }
 	

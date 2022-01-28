@@ -81,8 +81,12 @@ const payment = async(req , res )=>{
 //---------------------------------------SHOW USER -------------------------------------
 
 const showClient = async (req,res)=>{
+    try{
     const all = await Client.find().select({name:1,email:1,mobile_no:1,createdAt:1 });
-    res.send(all)
+   return res.send(all)
+    }catch(err){
+        return res.send(err)
+    }
 }
 console.log(Client)
 module.exports= {

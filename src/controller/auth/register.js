@@ -16,12 +16,12 @@ const bcrypt = require('bcrypt');
        user = new User({
            name: req.body.name,
            email: req.body.email,
-           mobile_no: req.body.mobile_no,
+           mobile_no: req.body.phone,
            password: Hash
        });
        await user.save();
-       res.send(user);
-       console.log(res);
+        return res.status(200).json({msg:"vishalm  "});
+       console.log("ok");
    }
 }
 catch (err)

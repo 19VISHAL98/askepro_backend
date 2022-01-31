@@ -15,7 +15,7 @@ const login = async (req, res, next) => {
       if(match){
         var token = jwt.sign({id:user._id, user_type:user.user_type , expiresIn: "2h"}, " process.env.SSP");
         if(token){
-          return res.send({ token: token });
+          return res.send({ token: token, user_type: user.user_type, id: user._id });
         }     
       }else{
         return res.status(424).send("Incorrect Password");

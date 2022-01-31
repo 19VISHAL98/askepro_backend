@@ -98,7 +98,7 @@ const showUser = async(req ,res)=> {
     try {
         const auth = verifyToken(req ,res);
         if(auth.user_type === "admin" || "user" ){
-        const user = await User.find();
+        const user = await User.findById(req.params.id);
         return res.json(user);
         }
         else{

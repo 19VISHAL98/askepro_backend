@@ -1,7 +1,9 @@
 const { Client } = require('../models/client');
 const {Document} = require('../models/Documents_Required');
+const { User } = require('../models/user');
 
-const {v4 : uuidv4} = require('uuid')
+const {v4 : uuidv4} = require('uuid');
+const verifyToken = require('./auth/verify');
 console.log(uuidv4())
  const client = async (req, res) => {
      try{
@@ -87,13 +89,37 @@ const showClient = async (req,res)=>{
     }catch(err){
         return res.send(err)
     }
-}
-console.log(Client)
+};
+console.log(Client);
+
+//---------------------------------------User--------------------------------------------------------------------------
+
+const showUser = async(req ,res)=> {
+    try {
+        const auth = verifyToken(req ,res);
+        if(auth.user_type === "admin" || "user" ){
+        const user = await User.find();
+        return res.json(user);
+        }
+        else{
+            return res.json("You don't have enough permissions");
+        }
+    }
+    catch(e){
+        return res.send(e)
+    };
+};
+
+
+
+
 module.exports= {
     client,
     client1,
     appintenents,
     document,
     payment,
-    showClient
+    showClient,
+    showUser
+
      };

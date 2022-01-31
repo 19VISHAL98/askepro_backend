@@ -32,6 +32,7 @@ const {
   document,
   payment,
   showClient,
+  showUser,
 } = require("../controller/users");
 const { upload } = require("../middleware/multer");
 
@@ -71,4 +72,5 @@ router.get("/oneApplication/(:id)", OneApplication);
 router.delete("/services/(:id)", deleteServices);
 router.get("/appointement", appointement);
 router.get("/showPayment", showPayment);
+router.get('/showUser', showUser);
 module.exports = router;

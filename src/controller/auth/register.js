@@ -20,7 +20,7 @@ const bcrypt = require('bcrypt');
            password: Hash
        });
        await user.save();
-        return res.status(200).json({msg:"vishalm  "});
+       return res.status(200).json({msg:"Registered Successfully"});
        console.log("ok");
    }
 }

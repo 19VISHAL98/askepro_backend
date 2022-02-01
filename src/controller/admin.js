@@ -89,16 +89,16 @@ const deleteOffer = async (req, res) => {
 //----------------------------------ADD FAQ ----------------------------------------------------
 const faq = async (req, res) => {
   try {
-    // const auth = verifyToken(req, res);
-    // if (auth.user_type === "admin") {
+    const auth = verifyToken(req, res);
+    if (auth.user_type === "admin") {
       faqs = new Faq({ question: req.body.question, answer: req.body.answer });
       await faqs.save();
       return res.send(faqs);
-    // } else {
-    //   return res.send("you don't have enough permissions");
-    // }
-  } catch (e) {
-    return res.send("ERROR :", e);
+    } else {
+      return res.send("you don't have enough permissions");
+    }
+  } catch (err) {
+    return res.send( err);
   }
 };
 //-------------------------------SHOW FAQ -----------------------------------------------\
@@ -213,7 +213,7 @@ const showServices = async (req, res) => {
 const deleteServices = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin") {
       const ServicesRemove = await Services.findByIdAndRemove(req.params.id);
       // return res.send(remove)
       res.send(ServicesRemove._id);
@@ -238,8 +238,8 @@ const deleteServices = async (req, res) => {
 
 const insertQuery = async (req, res) => {
   try {
-    const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    // const auth = verifyToken(req, res);
+    // if (auth.user_type === "admin") {
       const query = new Query({
         name: req.body.name,
         email: req.body.email,
@@ -247,11 +247,11 @@ const insertQuery = async (req, res) => {
       });
       await query.save();
       return res.send(query);
-    } else {
-      return res.send("You don't have enough permissions");
-    }
-  } catch (e) {
-    return res.send(e);
+    // } else {
+    //   return res.send("You don't have enough permissions");
+    // }
+  } catch (err) {
+    return res.send(err);
   }
 };
 
@@ -400,7 +400,7 @@ const OneApplication = async (req, res) => {
 const appointement = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin") {
       const appointementDate = await Client.find({
         appointments: { $ne: null },
       }).select({
@@ -424,7 +424,7 @@ const appointement = async (req, res) => {
 const showPayment = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin") {
       const payment = await Client.find()
         .select({
           createdAt: 1,
@@ -445,18 +445,58 @@ const showPayment = async (req, res) => {
   }
 };
 //--------------------------------------------------------------totalClient--------------------------------------------------------
-// const totalClient = (req, res)=>{
+const totalClient = async (req, res)=>{
+  try{
+    const auth = verifyToken(req, res);
+    if(auth.user_type === "admin"){
+    total = await Client.find().countDocuments();
+    return res.json({total})
+    }
+    else{
+      return res.json("You don't have enough permissions");
+    }
 
-<<<<<<< HEAD
-// }
-=======
+  }catch(err){
+    return res.json(err)
+  }
 
+}
+//--------------------------------------------------totalApplication----------------------------------------------------------
+const totalApplication = async (req, res)=>{
+  try{
+    const auth = verifyToken(req , res );
+    if(auth.user_type === "admin"){
+    total = await Client.find().countDocuments();
+    return res.json({total})
+    }else{
+      return res.json("You don't have enough permissions");
+    }
+
+  }catch(err){
+    return res.json(err)
+  }
+
+}
+//-------------------------------------------------------TotalAmount----------------------------------------------------------------------
+const TotalAmount = async (req ,res)=>{
+ try{
+   const auth = verifyToken(req , res);
+   if(auth.user_type === "admin"){
+  totalAmount = await Client.A;
+  return res.json(totalAmount)
+   }else{
+    return res.json("You don't have enough permissions");
+   }
+ }catch(err){
+   return res.send(err)
+ }
+}
 //------------------------------------------Overview----------------------------------------------------------------
 
 const showAppointments = async(req, res)=> {
   try{
     const auth = verifyToken(req, res);
-    if(auth.user_type === admin){
+    if(auth.user_type === "admin"){
       const appoinment = await Client.find({
         status: { $ne : "Appointment Accepted"}
       });
@@ -472,11 +512,6 @@ const showAppointments = async(req, res)=> {
   }
 }
 
-
-
-
-
->>>>>>> 5129ee74ab3aef1bc3c788f7e38e5d5e3fc1e300
 module.exports = {
   offer,
   showOffer,
@@ -500,5 +535,9 @@ module.exports = {
   OneApplication,
   appointement,
   showPayment,
-  showAppointments
+  showAppointments,
+  totalClient,
+  totalApplication,
+  TotalAmount
+
 };

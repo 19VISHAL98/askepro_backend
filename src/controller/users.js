@@ -145,13 +145,18 @@ const payment = async(req , res )=>{
 
 const showClient = async (req,res)=>{
     try{
+        const auth = verifyToken(req , res);
+        if(auth.user_type === "admin"){
     const all = await Client.find().select({name:1,email:1,mobile_no:1,createdAt:1 });
    return res.send(all)
+        }else{
+            return res.json("You don't have enough permissions");
+        }
     }catch(err){
         return res.send(err)
     }
 };
-console.log(Client);
+
 
 //---------------------------------------User--------------------------------------------------------------------------
 
@@ -182,12 +187,9 @@ module.exports= {
     payment,
     showClient,
     showUser,
-<<<<<<< HEAD
     verifyDocument,
-    rejectDocument
-=======
+    rejectDocument,
     acceptedAppointment, 
     rejectedAppointment
->>>>>>> 5129ee74ab3aef1bc3c788f7e38e5d5e3fc1e300
 
      };

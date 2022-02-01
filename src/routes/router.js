@@ -65,7 +65,7 @@ router.get("/viewDetails", viewDetails);
 router.post("/client", client);
 router.put("/client/(:id)", client1);
 router.put("/appintenent/(:id)", appintenents),
-  router.post("/uploadDocument/(:id)", upload.single("image"), document);
+router.post("/uploadDocument/(:id)", upload.single("image"), document);
 router.put("/payment/(:id)", payment);
 router.get("/category/(:id)", showCategory);
 router.get("/subCategory/(:id)", showSubCategory);

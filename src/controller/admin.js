@@ -19,7 +19,7 @@ const offer = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
     console.log(req.file.path);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin" || " ") {
       const offers = new Offers({ name: req.body.name, image: req.file.path });
       await offers.save();
       return res.send(offers);
@@ -34,7 +34,7 @@ const offer = async (req, res) => {
 const showOffer = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin" || " ") {
       const offer = await Offers.find();
       return res.send(offer);
     } else {
@@ -48,7 +48,7 @@ const showOffer = async (req, res) => {
 const viewOffer = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin") {
       const offer = await Offers.findById(req.params.id);
       let image = offer.image;
       var fileName = image.slice(12);
@@ -89,14 +89,14 @@ const deleteOffer = async (req, res) => {
 //----------------------------------ADD FAQ ----------------------------------------------------
 const faq = async (req, res) => {
   try {
-    const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    // const auth = verifyToken(req, res);
+    // if (auth.user_type === "admin") {
       faqs = new Faq({ question: req.body.question, answer: req.body.answer });
       await faqs.save();
       return res.send(faqs);
-    } else {
-      return res.send("you don't have enough permissions");
-    }
+    // } else {
+    //   return res.send("you don't have enough permissions");
+    // }
   } catch (e) {
     return res.send("ERROR :", e);
   }
@@ -105,7 +105,7 @@ const faq = async (req, res) => {
 const showFaq = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin") {
       faqs = await Faq.find();
       return res.send(faqs);
     } else {
@@ -150,11 +150,11 @@ const updateFaq = async (req, res) => {
 const service = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin" ||" ") {
       servic = new Services({
         services_name: req.body.services_name,
         description: req.body.description,
-        image: req.file.path,
+//image: req.file.path,
       });
       await servic.save();
       res.send(servic._id);
@@ -359,7 +359,7 @@ const showSubCategory = async (req, res) => {
 const manageApplication = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin" || " ") {
       applicatiion = await Client.find()
         .select({
           createdAt: 1,

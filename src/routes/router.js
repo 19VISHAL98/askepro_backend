@@ -22,6 +22,7 @@ const {
   deleteServices,
   appointement,
   showPayment,
+  showAppointments,
 } = require("../controller/admin");
 const { login } = require("../controller/auth/login");
 const { register } = require("../controller/auth/register");
@@ -77,4 +78,6 @@ router.get("/showPayment", showPayment);
 router.get('/user/(:id)', showUser);
 router.put('/approveAppointment', acceptedAppointment);
 router.put('/rejectAppointment', rejectedAppointment)
+router.get("/user/(:id)", showUser)
+router.get('/showAppointments', showAppointments)
 module.exports = router;

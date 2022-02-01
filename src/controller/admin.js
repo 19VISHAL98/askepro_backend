@@ -447,7 +447,36 @@ const showPayment = async (req, res) => {
 //--------------------------------------------------------------totalClient--------------------------------------------------------
 // const totalClient = (req, res)=>{
 
+<<<<<<< HEAD
 // }
+=======
+
+//------------------------------------------Overview----------------------------------------------------------------
+
+const showAppointments = async(req, res)=> {
+  try{
+    const auth = verifyToken(req, res);
+    if(auth.user_type === admin){
+      const appoinment = await Client.find({
+        status: { $ne : "Appointment Accepted"}
+      });
+      return res.json(appoinment);
+    }
+    else{
+      return res.json("You don't have enough permissions");
+    }
+  }
+
+  catch(e){
+    return res.send(e);
+  }
+}
+
+
+
+
+
+>>>>>>> 5129ee74ab3aef1bc3c788f7e38e5d5e3fc1e300
 module.exports = {
   offer,
   showOffer,
@@ -471,4 +500,5 @@ module.exports = {
   OneApplication,
   appointement,
   showPayment,
+  showAppointments
 };

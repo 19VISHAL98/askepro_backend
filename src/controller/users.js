@@ -4,6 +4,7 @@ const { User } = require('../models/user');
 
 const {v4 : uuidv4} = require('uuid');
 const verifyToken = require('./auth/verify');
+const { response } = require('express');
 console.log(uuidv4())
  const client = async (req, res) => {
      try{
@@ -40,15 +41,50 @@ const client1 = async(req , res)=>{
         return res.send(err)
     }
 }
-//------------------------------------------Appintenent---------------------------------------
+//------------------------------------------Appointenent---------------------------------------
 const appintenents = async(req ,res)=>{
     try{
-    appintenent = await Client.findByIdAndUpdate(req.params.id, {appointments:req.body.appointments, status:"appointments pending"})
+    const appintenent = await Client.findByIdAndUpdate(req.params.id, {appointments:req.body.appointments, status:"appointments pending"})
      return res.send(appintenent)
     }catch(err){
         return res.send(err)
     }
 }
+
+
+const acceptedAppointment = async(req, res)=> {
+    try{
+        const auth = verifyToken(req, res)
+        if(auth.user_type === "admin"){
+        const appointment = await Client.findByIdAndUpdate(req.params.id, { status:"Appointment Accepted"})
+        return res.send(appointment);
+    }
+    else{
+        return res.send("You don't have any permissions");
+    }
+    }
+    catch(e){
+        return res.json(e);
+    }
+};
+
+
+const rejectedAppointment = async(req, res)=> {
+try{
+    const auth = verifyToken(req, res);
+    if(auth.user_type === "admin"){
+        const appoinment = await Client.findByIdAndUpdate(req.params.id, {status: "Appointment Rejected"});
+        return res.json(appoinment);
+    }
+    else{
+        return res.json("You don't have enough permissions");
+    }
+}
+catch{
+    return res.json(e);
+}
+};
+
 //--------------------------------Document upload-------------------------------------------------------
 const document = async(req , res )=>{
     try{
@@ -146,7 +182,12 @@ module.exports= {
     payment,
     showClient,
     showUser,
+<<<<<<< HEAD
     verifyDocument,
     rejectDocument
+=======
+    acceptedAppointment, 
+    rejectedAppointment
+>>>>>>> 5129ee74ab3aef1bc3c788f7e38e5d5e3fc1e300
 
      };

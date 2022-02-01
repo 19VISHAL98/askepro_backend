@@ -22,6 +22,7 @@ const {
   deleteServices,
   appointement,
   showPayment,
+  showAppointments,
 } = require("../controller/admin");
 const { login } = require("../controller/auth/login");
 const { register } = require("../controller/auth/register");
@@ -35,6 +36,8 @@ const {
   showUser,
   verifyDocument,
   rejectDocument,
+  acceptedAppointment,
+  rejectedAppointment,
 } = require("../controller/users");
 const { upload } = require("../middleware/multer");
 
@@ -76,5 +79,9 @@ router.get("/oneApplication/(:id)", OneApplication);
 router.delete("/services/(:id)", deleteServices);
 router.get("/appointement", appointement);
 router.get("/showPayment", showPayment);
+router.get('/user/(:id)', showUser);
+router.put('/approveAppointment', acceptedAppointment);
+router.put('/rejectAppointment', rejectedAppointment)
 router.get("/user/(:id)", showUser)
+router.get('/showAppointments', showAppointments)
 module.exports = router;

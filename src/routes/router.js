@@ -33,6 +33,8 @@ const {
   payment,
   showClient,
   showUser,
+  verifyDocument,
+  rejectDocument,
 } = require("../controller/users");
 const { upload } = require("../middleware/multer");
 
@@ -64,6 +66,8 @@ router.post("/client", client);
 router.put("/client/(:id)", client1);
 router.put("/appintenent/(:id)", appintenents),
 router.post("/uploadDocument/(:id)", upload.single("image"), document);
+router.put("/document/(:id)" , verifyDocument)
+router.put('/rejectDocument/(:id)', rejectDocument)
 router.put("/payment/(:id)", payment);
 router.get("/category/(:id)", showCategory);
 router.get("/subCategory/(:id)", showSubCategory);

@@ -384,10 +384,10 @@ const manageApplication = async (req, res) => {
 const OneApplication = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
-    if (auth.user_type === admin) {
+    if (auth.user_type === "admin" || " ") {
       var id = req.params.id;
       console.log(id);
-      applicatiion = await Client.findById(id);
+      applicatiion = await Client.findById(id).populate("service_id", "service_name");
       return res.send(applicatiion);
     } else {
       return res.send("You don't have enough permissions");
@@ -396,7 +396,7 @@ const OneApplication = async (req, res) => {
     return res.send(err);
   }
 };
-
+//---------------------------------------------------appointement----------------------------------------------------------
 const appointement = async (req, res) => {
   try {
     const auth = verifyToken(req, res);
@@ -418,6 +418,7 @@ const appointement = async (req, res) => {
     return res.json(err);
   }
 };
+
 //-------------------------------------------------payment-------------------------------------------------------------
 
 const showPayment = async (req, res) => {
@@ -443,7 +444,10 @@ const showPayment = async (req, res) => {
     return res.json(e);
   }
 };
+//--------------------------------------------------------------totalClient--------------------------------------------------------
+// const totalClient = (req, res)=>{
 
+// }
 module.exports = {
   offer,
   showOffer,

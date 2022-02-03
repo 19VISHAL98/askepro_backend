@@ -451,7 +451,7 @@ const showAppointments = async(req, res)=> {
   try{
     const auth = verifyToken(req, res);
     if(auth.user_type === admin){
-      const appoinment = await Client.find({
+      const appointment = await Client.find({
         status: { $ne : "Appointment Accepted"}
       });
       return res.json(appoinment);

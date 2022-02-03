@@ -23,6 +23,7 @@ const Client= mongoose.model('Client', new mongoose.Schema({
      services_id:[{type:'ObjectId', ref:'Services'}] ,
      category_id:[{type:'ObjectId', ref:'Category'}] ,
      sub_category_id:[{type:'ObjectId', ref:'Sub_Category'}] ,
+     document_id:[{type:'ObjectId', ref:'Sub_Category'}]
     
 },{timestamps: true}));
 exports.Client = Client;

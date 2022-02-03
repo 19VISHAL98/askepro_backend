@@ -23,6 +23,9 @@ const {
   appointement,
   showPayment,
   showAppointments,
+  totalClient,
+  totalApplication,
+  TotalAmount,
 } = require("../controller/admin");
 const { login } = require("../controller/auth/login");
 const { register } = require("../controller/auth/register");
@@ -34,6 +37,8 @@ const {
   payment,
   showClient,
   showUser,
+  verifyDocument,
+  rejectDocument,
   acceptedAppointment,
   rejectedAppointment,
 } = require("../controller/users");
@@ -58,7 +63,7 @@ router.post("/login", login);
 router.post("/services", upload.single("image"), service);
 router.get("/showServices", showServices);
 router.post("/login", login);
-router.post("/insertQuery", insertQuery);
+router.post("/query", insertQuery);
 router.get("/showQuery", showQuery);
 router.put("/updateQuery/(:id)", updateQuery);
 router.get("/showClients", showClients);
@@ -67,6 +72,8 @@ router.post("/client", client);
 router.put("/client/(:id)", client1);
 router.put("/appintenent/(:id)", appintenents),
 router.post("/uploadDocument/(:id)", upload.single("image"), document);
+router.put("/document/(:id)" , verifyDocument)
+router.put('/rejectDocument/(:id)', rejectDocument)
 router.put("/payment/(:id)", payment);
 router.get("/category/(:id)", showCategory);
 router.get("/subCategory/(:id)", showSubCategory);
@@ -80,4 +87,7 @@ router.put('/approveAppointment', acceptedAppointment);
 router.put('/rejectAppointment', rejectedAppointment)
 router.get("/user/(:id)", showUser)
 router.get('/showAppointments', showAppointments)
+router.get('/totalClient', totalClient)
+router.get('/totalAmount',TotalAmount)
+router.get("/totalApplication",totalApplication)
 module.exports = router;

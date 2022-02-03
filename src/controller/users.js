@@ -88,6 +88,7 @@ catch{
 //--------------------------------Document upload-------------------------------------------------------
 const document = async(req , res )=>{
     try{
+        console.log(req.params.id)
       Upload_document = new Document({
          document_name: req.body.document_name,
          image: req.file.path,
@@ -95,8 +96,32 @@ const document = async(req , res )=>{
          status: "Payment Pending"
           })
           await Upload_document.save()
+         const clientID =  await Client.findByIdAndUpdate(req.params.id, {document_id : Upload_document._id})
+          return res.json({clientID})
     }catch(err){
         return res.send(err)
+    }
+}
+//---------------------------------------verify document---------------------------------------------------------------------
+const verifyDocument = async (req, res)=>{
+    try{
+       
+               const verifyDoc = await Document.findByIdAndUpdate(req.params.id, {status:"Document approved"})
+               return res.json({verifyDoc})
+          
+    }catch(err){
+        return res.json({"mas": err})
+    }
+}
+//-------------------------------------------------------------reject Document ------------------------------------
+const rejectDocument = async (req, res)=>{
+    try{
+        
+               const rejectDoc = await Document.findByIdAndUpdate(req.params.id, {status:"Document Reject"})
+               return res.json({rejectDoc})
+            
+    }catch(err){
+        return res.json({"mas": err})
     }
 }
 //---------------------------------------------Payment------------------------------------------
@@ -120,13 +145,18 @@ const payment = async(req , res )=>{
 
 const showClient = async (req,res)=>{
     try{
+        const auth = verifyToken(req , res);
+        if(auth.user_type === "admin"){
     const all = await Client.find().select({name:1,email:1,mobile_no:1,createdAt:1 });
    return res.send(all)
+        }else{
+            return res.json("You don't have enough permissions");
+        }
     }catch(err){
         return res.send(err)
     }
 };
-console.log(Client);
+
 
 //---------------------------------------User--------------------------------------------------------------------------
 
@@ -157,6 +187,8 @@ module.exports= {
     payment,
     showClient,
     showUser,
+    verifyDocument,
+    rejectDocument,
     acceptedAppointment, 
     rejectedAppointment
 
